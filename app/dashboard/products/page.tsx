@@ -1,11 +1,19 @@
-'use client'
+"use client";
 import DashboardHeader from "../components/ui/DashboardHeader";
 import { Plus } from "lucide-react";
 import { useCategories } from "@/hooks/categories/useCategories";
 import { CategoriesTable } from "../components/categories/CategoriesTable";
+import { ProductTable } from "../components/products/ProductTable";
+import { useProducts } from "@/hooks/products/useProducts";
+import { TableSkeleton } from "../components/skeletons/TableSkeleton";
 
 const ProductManage = () => {
-  const { categories } = useCategories();
+
+  const { products ,isLoading} = useProducts({
+    isAdmin: true,
+  });
+
+
   return (
     <div>
       <DashboardHeader
@@ -15,7 +23,11 @@ const ProductManage = () => {
         buttonLink="/dashboard/products/create"
         buttonIcon={<Plus />}
       />
-      <CategoriesTable categories={categories}></CategoriesTable>
+      {isLoading  ? (
+        <TableSkeleton />
+      ) : (
+        <ProductTable products={products}></ProductTable>
+      )}
     </div>
   );
 };

@@ -58,11 +58,12 @@ const productSchema = z.object({
     .min(0, "Stock cannot be negative"),
 
   size: z
-    .enum(["m", "l", "xl"], {
-      message: "Please select a valid size",
-    })
+    .array(
+      z.enum(["m", "l", "xl"], {
+        message: "Please select a valid size",
+      }),
+    )
     .optional(),
-
   isTrending: z.boolean(),
 
   isFlashDeal: z.boolean(),
@@ -143,7 +144,11 @@ const ProductForm = ({ product }: ProductFormProps) => {
       formData.append("status", values.status);
 
       if (values.brand) formData.append("brand", values.brand);
-      if (values.size) formData.append("size", values.size);
+      if (values.size?.length) {
+        values.size.forEach((size) => {
+          formData.append("size[]", size);
+        });
+      }
       if (values.isTrending) formData.append("isTrending", "true");
       if (values.isFlashDeal) formData.append("isFlashDeal", "true");
       if (values.isCombo) formData.append("isCombo", "true");
@@ -174,7 +179,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
           discount: 0,
           description: "",
           stock: 0,
-          size: undefined,
+          size: [],
           isTrending: false,
           isFlashDeal: false,
           isCombo: false,
@@ -441,26 +446,40 @@ const ProductForm = ({ product }: ProductFormProps) => {
 
           {/* Size */}
           <div className="space-y-2">
-            <Label>Size</Label>
-            <Select
-              value={form.watch("size") || "none"}
-              onValueChange={(value) =>
-                form.setValue(
-                  "size",
-                  value === "none" ? undefined : (value as any),
-                )
-              }
-            >
-              <SelectTrigger className={"w-full"}>
-                <SelectValue placeholder="Select size" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="none">No Size</SelectItem>
-                <SelectItem value="m">M</SelectItem>
-                <SelectItem value="l">L</SelectItem>
-                <SelectItem value="xl">XL</SelectItem>
-              </SelectContent>
-            </Select>
+            <Label>Sizes</Label>
+
+            <div className="flex gap-2 flex-wrap">
+              {["m", "l", "xl"].map((size) => {
+                const selectedSizes = form.watch("size") || [];
+
+                const checked = selectedSizes.includes(
+                  size as "m" | "l" | "xl",
+                );
+
+                return (
+                  <Button
+                    key={size}
+                    type="button"
+                    variant={checked ? "default" : "outline"}
+                    onClick={() => {
+                      if (checked) {
+                        form.setValue(
+                          "size",
+                          selectedSizes.filter((s) => s !== size),
+                        );
+                      } else {
+                        form.setValue("size", [
+                          ...selectedSizes,
+                          size as "m" | "l" | "xl",
+                        ]);
+                      }
+                    }}
+                  >
+                    {size.toUpperCase()}
+                  </Button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Tags */}

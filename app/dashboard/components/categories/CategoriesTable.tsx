@@ -135,9 +135,6 @@ export function CategoriesTable({ categories }: { categories: ICategory[] }) {
                       Update Category
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer">
-                    Manage Sub-categories
-                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     variant="destructive"

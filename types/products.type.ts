@@ -1,4 +1,3 @@
-
 export interface IImage {
   url: string;
   publicId: string;
@@ -6,11 +5,7 @@ export interface IImage {
 
 export type ProductSize = "m" | "l" | "xl";
 
-export type ProductStatus =
-  | "active"
-  | "inactive"
-  | "draft"
-  | "archived";
+export type ProductStatus = "active" | "inactive" | "draft" | "archived";
 
 export interface IProduct {
   _id: string;
@@ -42,7 +37,7 @@ export interface IProduct {
 
   stock: number;
 
-  size: ProductSize | null;
+  sizes: ProductSize[] | [];
 
   isTrending: boolean;
 
