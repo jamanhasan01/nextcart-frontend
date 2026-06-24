@@ -15,7 +15,7 @@ export interface IProduct {
   name: string;
 
   category:
-    | string
+    
     | {
         _id: string;
         name: string;

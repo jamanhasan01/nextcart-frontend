@@ -9,6 +9,17 @@ export const useProducts = (params = {}) => {
 
   return {
     products: data?.data?.products,
-    isLoading
+    isLoading,
+  };
+};
+
+export const useProduct = (id: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["product"],
+    queryFn: () => ProductService.getById(id),
+  });
+  return {
+    product: data?.data,
+    isLoading,
   };
 };
