@@ -56,16 +56,21 @@ const data = {
       icon: <ShoppingBagIcon />,
       items: [
         {
-          title: "All Products",
+          title: "Manage Products",
           url: "/dashboard/products",
         },
         {
-          title: "Categories",
-          url: "/categories",
+          title: "Add Products",
+          url: "/dashboard/products/create",
+        },
+
+        {
+          title: "Manage Categories",
+          url: "/dashboard/categories",
         },
         {
-          title: "Brands",
-          url: "/brands",
+          title: "Add Categories",
+          url: "/dashboard/categories/create",
         },
       ],
     },
