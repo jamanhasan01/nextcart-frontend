@@ -1,16 +1,9 @@
-import { ChevronLeft } from "lucide-react";
-import DashboardHeader from "../../components/ui/DashboardHeader";
+import ProductForm from "../../components/products/ProductForm";
 
 const AddProduct = () => {
   return (
     <div>
-      <DashboardHeader
-        title="Add New Product"
-        subtitle="Create a new entry in your digital inventory"
-        buttonText="Back to Products"
-        buttonLink="/dashboard/products"
-        buttonIcon={<ChevronLeft/>}
-      />
+      <ProductForm></ProductForm>
     </div>
   );
 };
