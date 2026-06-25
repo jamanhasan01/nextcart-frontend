@@ -30,7 +30,7 @@ interface ProductTableProps {
   limit: number;
 }
 
-export function ProductTable({ products, page ,limit }: ProductTableProps) {
+export function ProductTable({ products, page, limit }: ProductTableProps) {
   if (!products || products.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center rounded-lg border bg-card p-12 text-center text-muted-foreground">
@@ -195,11 +195,13 @@ export function ProductTable({ products, page ,limit }: ProductTableProps) {
             {/* Actions */}
             <TableCell className="text-right">
               <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Button variant="ghost" size="icon" className="h-8 w-8">
-                    <MoreHorizontalIcon className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
+                <DropdownMenuTrigger
+                  render={
+                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <MoreHorizontalIcon className="h-4 w-4" />
+                    </Button>
+                  }
+                ></DropdownMenuTrigger>
 
                 <DropdownMenuContent align="end" className="w-48">
                   <DropdownMenuItem>

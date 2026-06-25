@@ -25,7 +25,7 @@ const CategoriesManage = () => {
     limit: 20,
     page,
   });
-  console.log(pagination);
+
 
   const totalPage = pagination?.total_page;
   const limit = pagination?.limit;

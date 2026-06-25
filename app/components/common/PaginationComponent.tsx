@@ -30,7 +30,7 @@ export function PaginationComponent({
 
         {Array.from({ length: total_page }).map((_, index) => {
           return (
-            <PaginationItem>
+            <PaginationItem key={index}>
               <PaginationLink
                 onClick={() => setPage(index + 1)}
                 isActive={page == index + 1}

@@ -3,32 +3,43 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useShop } from "@/context/ShopContext";
+
+import { useLogin } from "@/hooks/auth/useAuth";
 
 export default function LoginPage() {
-  const { loginUser } = useShop();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { mutateAsync } = useLogin();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) return;
-    loginUser(email);
-    router.push("/");
+    try {
+      const data = { email, password };
+      const res = await mutateAsync(data);
+      router.push("/");
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   return (
     <div className="flex min-h-[80vh] items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
         <div className="text-center">
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">Welcome Back</h2>
-          <p className="text-xs text-slate-500 mt-1">Sign in to sync your active cart and profile details</p>
+          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+            Welcome Back
+          </h2>
+          <p className="text-xs text-slate-500 mt-1">
+            Sign in to sync your active cart and profile details
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
+              Email Address
+            </label>
             <input
               type="email"
               required
@@ -40,7 +51,9 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">Password</label>
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
+              Password
+            </label>
             <input
               type="password"
               required
@@ -61,7 +74,10 @@ export default function LoginPage() {
 
         <p className="text-center text-xs text-slate-600">
           New here?{" "}
-          <Link href="/register" className="font-semibold text-blue-600 hover:underline">
+          <Link
+            href="/register"
+            className="font-semibold text-blue-600 hover:underline"
+          >
             Create an account
           </Link>
         </p>

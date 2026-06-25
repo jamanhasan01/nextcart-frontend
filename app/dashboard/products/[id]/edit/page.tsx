@@ -7,13 +7,11 @@ import { useParams } from "next/navigation";
 const UpdateProduct = () => {
   const { id } = useParams();
 
-  const { product ,isLoading} = useProduct(id as string);
+  const { product, isLoading } = useProduct(id as string);
   if (isLoading) {
-    return null
+    return null;
   }
 
-  console.log({product});
-  
   return (
     <div>
       <ProductForm product={product}></ProductForm>

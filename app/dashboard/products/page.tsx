@@ -16,7 +16,7 @@ const ProductManage = () => {
 
   const { debouncevalue, isDebounce } = useDebounce(searchQuery, 1000);
 
-  console.log({ debouncevalue });
+
 
   const { products, isLoading, pagination } = useProducts({
     isAdmin: true,

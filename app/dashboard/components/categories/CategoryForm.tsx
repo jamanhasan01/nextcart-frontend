@@ -101,6 +101,9 @@ const CategoryForm = ({ category }: CategoryFormProps) => {
 
       let res;
 
+      console.log(formData);
+      
+
       if (isEditMode && category?._id) {
         res = await updateCategory({
           id: category._id,
@@ -188,7 +191,7 @@ const CategoryForm = ({ category }: CategoryFormProps) => {
           <div className="space-y-2">
             <Label>Slug</Label>
 
-            <Input readOnly value={form.watch("slug")} />
+            <Input placeholder="Slug start..." readOnly value={form.watch("slug")} />
 
             <p className="text-sm text-red-500">
               {form.formState.errors.slug?.message}

@@ -25,40 +25,41 @@ export function ProductFilters({
   onStatusChange,
 }: ProductsFiltersProps) {
   return (
-    <div className="flex mb-6 justify-between sm:flex-row items-center gap-3 w-full bg-card p-4 rounded-xl border border-border shadow-sm">
-      {/* Search Input Box */}
-      <div className="relative min-w-2xl sm:max-w-xs flex-1">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          type="text"
-          placeholder="Search products..."
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-9 bg-background border-input text-foreground placeholder:text-muted-foreground w-full"
-        />
-      </div>
+  <div className="mb-6 flex min-w-full max-w-2xl flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-sm sm:flex-row sm:items-center">
+  {/* Search */}
+  <div className="relative w-full flex-1">
+    <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 
-      {/* Status Filter Dropdown */}
-      <div className="w-full flex justify-end">
-        <Select
-          value={statusFilter}
-          // FIX: Intercept the null value and safely pass a string up to your state hook
-          onValueChange={(value) => onStatusChange(value ?? "")}
-        >
-          <SelectTrigger className="border-input text-foreground">
-            <SelectValue
-              className={"capitalize"}
-              placeholder="Filter by Status"
-            />
-          </SelectTrigger>
-          <SelectContent className="bg-popover border-border text-popover-foreground">
-            <SelectItem value="all">All Statuses</SelectItem>
-            <SelectItem value="active">Active</SelectItem>
-            <SelectItem value="draft">Draft</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-    </div>
+    <Input
+      type="text"
+      placeholder="Search products..."
+      value={searchQuery}
+      onChange={(e) => onSearchChange(e.target.value)}
+      className="w-full pl-9"
+    />
+  </div>
+
+  {/* Status Filter */}
+  <div className="w-full sm:w-52">
+    <Select
+      value={statusFilter}
+      onValueChange={(value) => onStatusChange(value ?? "")}
+    >
+      <SelectTrigger className="w-full">
+        <SelectValue
+          placeholder="Filter by Status"
+          className="capitalize"
+        />
+      </SelectTrigger>
+
+      <SelectContent>
+        <SelectItem value="all">All Statuses</SelectItem>
+        <SelectItem value="active">Active</SelectItem>
+        <SelectItem value="draft">Draft</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+</div>
   );
 }
 

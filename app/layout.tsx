@@ -24,6 +24,8 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
+      data-lastpass-icon-root
+      data-gr-ext-installed
       className={cn("h-full bg-background", "font-sans", geist.variable)}
     >
       <body

@@ -16,6 +16,9 @@ export class ApiClient {
 
     const res = await fetch(
       `${this.baseUrl}${endpoint}${query ? `?${query}` : ""}`,
+      {
+        credentials: "include",
+      },
     );
 
     if (!res.ok) {
@@ -30,7 +33,7 @@ export class ApiClient {
 
     const res = await fetch(`${this.baseUrl}${endpoint}`, {
       method: "POST",
-
+      credentials: "include",
       headers: isFormData
         ? undefined
         : {

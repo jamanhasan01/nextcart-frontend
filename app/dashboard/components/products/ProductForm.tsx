@@ -217,7 +217,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
   };
 
   const removeTag = (tag: string) => {
-    console.log({ tag });
+
 
     form.setValue(
       "tags",
