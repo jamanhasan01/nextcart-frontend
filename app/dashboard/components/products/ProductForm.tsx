@@ -76,12 +76,10 @@ const productSchema = z.object({
     message: "Please select a valid status",
   }),
 
-  images: z
-    .array(z.instanceof(File))
-    .min(1, "At least one product image is required"),
+  images: z.array(z.instanceof(File)).default([]),
 });
 
-type ProductFormData = z.infer<typeof productSchema>;
+type ProductFormData = z.input<typeof productSchema>;
 
 interface ProductFormProps {
   product?: IProduct;
@@ -115,7 +113,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
       isCombo: product?.isCombo || false,
       tags: product?.tags || [],
       status: product?.status || "draft",
-      images: [],
+      images: [] as File[],
     },
   });
 
@@ -155,9 +153,17 @@ const ProductForm = ({ product }: ProductFormProps) => {
 
       values.tags.forEach((tag) => formData.append("tags[]", tag));
 
-      if (values.images) {
-        values.images.forEach((img) => formData.append("images", img));
+      if (!isEditMode && (!values.images || values.images.length === 0)) {
+        form.setError("images", {
+          type: "manual",
+          message: "At least one product image is required",
+        });
+        return;
       }
+
+      values.images?.forEach((img) => {
+        formData.append("images", img);
+      });
 
       let res;
 

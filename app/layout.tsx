@@ -3,7 +3,7 @@ import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { ShopProvider } from "@/context/ShopContext";
 import QueryProvider from "@/providers/QueryProvider";
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/common/Navbar";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 

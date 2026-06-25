@@ -1,6 +1,6 @@
 // app/(shop)/layout.tsx
 
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/common/Navbar";
 
 export default function ShopLayout({
   children,

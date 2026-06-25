@@ -4,11 +4,21 @@ import { Plus } from "lucide-react";
 import { ProductTable } from "../components/products/ProductTable";
 import { useProducts } from "@/hooks/products/useProducts";
 import { TableSkeleton } from "../components/skeletons/TableSkeleton";
+import { PaginationComponent } from "@/app/components/common/PaginationComponent";
+import { useState } from "react";
 
 const ProductManage = () => {
-  const { products, isLoading } = useProducts({
+  const [page, setPage] = useState(1);
+  console.log({ page });
+
+  const { products, isLoading, pagination } = useProducts({
     isAdmin: true,
+    limit: 1,
+    page,
   });
+
+  const totalPage = pagination?.total_page;
+  const limit = pagination?.limit;
 
   return (
     <div>
@@ -24,6 +34,12 @@ const ProductManage = () => {
       ) : (
         <ProductTable products={products}></ProductTable>
       )}
+      <PaginationComponent
+        total_page={totalPage}
+        page={page}
+        limit={limit}
+        setPage={setPage}
+      ></PaginationComponent>
     </div>
   );
 };

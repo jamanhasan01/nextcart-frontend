@@ -14,12 +14,10 @@ export interface IProduct {
 
   name: string;
 
-  category:
-    
-    | {
-        _id: string;
-        name: string;
-      };
+  category: {
+    _id: string;
+    name: string;
+  };
 
   brand: string | null;
 
@@ -52,4 +50,21 @@ export interface IProduct {
   createdAt: string;
 
   updatedAt: string;
+}
+
+export interface IProductQuery {
+  page?: number;
+  limit?: number;
+  select?: string;
+  search?: string;
+  categories?: string;
+  productId?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  sort?: string;
+  status?: string;
+  isCombo?: string;
+  isFlashDeal?: string;
+  isTrending?: string;
+  isAdmin?: boolean;
 }

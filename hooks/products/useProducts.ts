@@ -1,14 +1,16 @@
 import { ProductService } from "@/services/productService";
+import { IProductQuery } from "@/types/products.type";
 import { useQuery } from "@tanstack/react-query";
 
-export const useProducts = (params = {}) => {
+export const useProducts = (params: IProductQuery) => {
   const { data, isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", params],
     queryFn: () => ProductService.get(params),
   });
 
   return {
     products: data?.data?.products,
+    pagination: data?.data?.pagination,
     isLoading,
   };
 };
