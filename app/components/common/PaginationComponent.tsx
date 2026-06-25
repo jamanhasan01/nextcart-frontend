@@ -24,7 +24,8 @@ export function PaginationComponent({
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            onClick={() => page && page > 1 && setPage(page - 1)}         />
+            onClick={() => page && page > 1 && setPage(page - 1)}
+          />
         </PaginationItem>
 
         {Array.from({ length: total_page }).map((_, index) => {

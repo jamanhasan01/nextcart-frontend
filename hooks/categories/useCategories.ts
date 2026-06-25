@@ -9,7 +9,7 @@ export const useCategories = (params = {}) => {
 
   return {
     categories: data?.data,
-    meta: data?.meta,
+    pagination: data?.pagination,
     isLoading,
     error,
   };

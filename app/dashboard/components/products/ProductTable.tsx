@@ -26,9 +26,11 @@ import { IProduct } from "@/types/products.type";
 
 interface ProductTableProps {
   products: IProduct[];
+  page: number;
+  limit: number;
 }
 
-export function ProductTable({ products }: ProductTableProps) {
+export function ProductTable({ products, page ,limit }: ProductTableProps) {
   if (!products || products.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center rounded-lg border bg-card p-12 text-center text-muted-foreground">
@@ -49,6 +51,7 @@ export function ProductTable({ products }: ProductTableProps) {
     <Table className="rounded-md border bg-card">
       <TableHeader>
         <TableRow className="hover:bg-transparent">
+          <TableHead className="w-16">No</TableHead>
           <TableHead className="w-16">Image</TableHead>
 
           <TableHead>Product</TableHead>
@@ -70,11 +73,12 @@ export function ProductTable({ products }: ProductTableProps) {
       </TableHeader>
 
       <TableBody>
-        {products.map((product) => (
+        {products.map((product, i) => (
           <TableRow
             key={product._id}
             className="transition-colors hover:bg-muted/50"
           >
+            <TableCell>{(page - 1) * limit + (i + 1)}</TableCell>
             {/* Product Image */}
             <TableCell>
               {product.thumbnail?.url ? (

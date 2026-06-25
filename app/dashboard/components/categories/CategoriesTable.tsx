@@ -19,7 +19,17 @@ import { ICategory } from "@/types/categories.type";
 import { convertToDate } from "@/lib/date";
 import Link from "next/link";
 
-export function CategoriesTable({ categories }: { categories: ICategory[] }) {
+interface categoryTableProps {
+  categories: ICategory[];
+  page: number;
+  limit: number;
+}
+
+export function CategoriesTable({
+  categories,
+  limit,
+  page,
+}: categoryTableProps) {
   if (!categories || categories.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center p-12 text-center border rounded-lg bg-card text-muted-foreground space-y-3">
@@ -40,6 +50,7 @@ export function CategoriesTable({ categories }: { categories: ICategory[] }) {
     <Table className="border rounded-md bg-card">
       <TableHeader>
         <TableRow className="hover:bg-transparent">
+          <TableHead className="w-17.5">No</TableHead>
           <TableHead className="w-17.5">Image</TableHead>
           <TableHead>Category Name</TableHead>
           <TableHead>Slug</TableHead>
@@ -50,11 +61,12 @@ export function CategoriesTable({ categories }: { categories: ICategory[] }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {categories.map((category) => (
+        {categories.map((category,i) => (
           <TableRow
             key={category._id}
             className="transition-colors hover:bg-muted/50"
           >
+            <TableCell>{(page - 1) * limit + (i + 1)}</TableCell>
             {/* Image Thumbnail */}
             <TableCell>
               {category.image?.url ? (
