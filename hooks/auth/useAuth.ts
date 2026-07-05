@@ -5,10 +5,18 @@ export const useAuth = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["me"],
     queryFn: AuthService.me,
+    retry: false, // 👈 Don't retry on auth failure
   });
+
+  const logoutMutation = useMutation({
+    mutationFn: AuthService.logout,
+  });
+
   return {
     me: data?.data,
     isLoading,
+    logout: logoutMutation.mutate,
+    isLoggingOut: logoutMutation.isPending,
   };
 };
 
@@ -22,13 +30,6 @@ export const useRegistration = () => {
 export const useLogin = () => {
   const mutation = useMutation({
     mutationFn: AuthService.login,
-  });
-
-  return mutation;
-};
-export const useLogout = () => {
-  const mutation = useMutation({
-    mutationFn: AuthService.logout,
   });
 
   return mutation;

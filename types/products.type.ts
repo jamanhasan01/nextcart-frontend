@@ -41,7 +41,7 @@ export interface IProduct {
 
   isFlashDeal: boolean;
 
-  isCombo: boolean;
+  isOffer: boolean;
 
   tags: string[];
 
@@ -63,7 +63,7 @@ export interface IProductQuery {
   maxPrice?: string;
   sort?: string;
   status?: string;
-  isCombo?: string;
+  isOffer?: string;
   isFlashDeal?: string;
   isTrending?: string;
   isAdmin?: boolean;

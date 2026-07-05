@@ -3,7 +3,7 @@ import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { ShopProvider } from "@/context/ShopContext";
 import QueryProvider from "@/providers/QueryProvider";
-import Navbar from "@/app/components/common/Navbar";
+
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 
@@ -35,6 +35,7 @@ export default function RootLayout({
           "min-h-screen flex flex-col antialiased bg-background text-foreground",
         )}
       >
+        
         <QueryProvider>
           <ShopProvider>
             <main>{children}</main>

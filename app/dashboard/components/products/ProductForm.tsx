@@ -68,7 +68,7 @@ const productSchema = z.object({
 
   isFlashDeal: z.boolean(),
 
-  isCombo: z.boolean(),
+  isOffer: z.boolean(),
 
   tags: z.array(z.string()),
 
@@ -110,7 +110,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
       size: product?.sizes || undefined,
       isTrending: product?.isTrending || false,
       isFlashDeal: product?.isFlashDeal || false,
-      isCombo: product?.isCombo || false,
+      isOffer: product?.isOffer || false,
       tags: product?.tags || [],
       status: product?.status || "draft",
       images: [] as File[],
@@ -149,7 +149,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
       }
       if (values.isTrending) formData.append("isTrending", "true");
       if (values.isFlashDeal) formData.append("isFlashDeal", "true");
-      if (values.isCombo) formData.append("isCombo", "true");
+      if (values.isOffer) formData.append("isOffer", "true");
 
       values.tags.forEach((tag) => formData.append("tags[]", tag));
 
@@ -188,7 +188,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
           size: [],
           isTrending: false,
           isFlashDeal: false,
-          isCombo: false,
+          isOffer: false,
           tags: [],
           status: "draft",
           images: [],
@@ -217,8 +217,6 @@ const ProductForm = ({ product }: ProductFormProps) => {
   };
 
   const removeTag = (tag: string) => {
-
-
     form.setValue(
       "tags",
       form.watch("tags").filter((t) => t !== tag),
@@ -567,9 +565,9 @@ const ProductForm = ({ product }: ProductFormProps) => {
                   </p>
                 </div>
                 <Switch
-                  checked={form.watch("isCombo")}
+                  checked={form.watch("isOffer")}
                   onCheckedChange={(checked) =>
-                    form.setValue("isCombo", checked)
+                    form.setValue("isOffer", checked)
                   }
                 />
               </div>
