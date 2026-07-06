@@ -1,7 +1,7 @@
-// src/types/cart.ts
+import { IProduct } from "./products.type";
 
 export interface ICartItem {
-  product: string;
+  product: IProduct;
   quantity: number;
 }
 

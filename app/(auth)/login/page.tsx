@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useLogin } from "@/hooks/auth/useAuth";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,7 +20,11 @@ export default function LoginPage() {
       const res = await mutateAsync(data);
       router.push("/");
     } catch (error) {
-      console.log({ error });
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong");
+      }
     }
   };
 

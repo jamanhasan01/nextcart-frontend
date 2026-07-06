@@ -3,10 +3,10 @@ import { IProductQuery } from "@/types/products.type";
 import { api } from "@/utils/Api";
 
 export const CategoryService = {
-  get: async (params:IProductQuery) => {
+  get: async (params: IProductQuery) => {
     return api.get(`/categories`, params);
   },
-  getById: async (id = {}) => {
+  getById: async (id: string) => {
     return api.get(`/categories/${id}`);
   },
   post: async (payload: FormData) => {

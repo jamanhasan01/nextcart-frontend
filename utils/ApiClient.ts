@@ -57,7 +57,7 @@ export class ApiClient {
 
     const res = await fetch(`${this.baseUrl}${endpoint}`, {
       method: "PATCH",
-
+      credentials: "include",
       headers: isFormData
         ? undefined
         : {
@@ -68,7 +68,7 @@ export class ApiClient {
     });
 
     const data = await res.json();
-
+ 
     if (!res.ok) {
       throw new Error(data.message || "Failed to update data");
     }

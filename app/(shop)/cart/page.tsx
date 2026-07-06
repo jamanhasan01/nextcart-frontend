@@ -7,6 +7,7 @@ import { ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/cart/userCart";
 import { useRemoveCart } from "@/hooks/cart/useRemoveCart";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
+import { ICart, ICartItem } from "@/types/cart";
 
 export default function CartPage() {
   const { data, isLoading } = useCart();
@@ -15,7 +16,7 @@ export default function CartPage() {
 
   const { mutate: removeFromCart, isPending: isRemoving } = useRemoveCart();
 
-  const cart = data?.items ?? [];
+  const cart: ICartItem[] = data?.items ?? []
 
   const total = cart.reduce(
     (sum, item) => sum + item.product.finalPrice * item.quantity,
@@ -62,7 +63,7 @@ export default function CartPage() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Cart Items */}
         <div className="space-y-4 divide-y rounded-xl border bg-white p-6 shadow-sm lg:col-span-8">
-          {cart.map((item) => (
+          {cart.map((item: ICartItem) => (
             <div
               key={item.product._id}
               className="flex flex-col gap-4 pt-4 first:pt-0 sm:flex-row"

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../auth/useAuth";
 import { CartService } from "@/services/cart.service";
 import { addToLocalCart } from "@/utils/local-cart";
+import { toast } from "sonner";
 
 export const useAddToCart = () => {
   const { me: user } = useAuth();
@@ -36,6 +37,9 @@ export const useAddToCart = () => {
       queryClient.invalidateQueries({
         queryKey: ["cart"],
       });
+    },
+    onError(error) {
+      toast.error(error.message || "something went wrong in order");
     },
   });
 };
