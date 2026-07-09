@@ -17,6 +17,8 @@ export default function OrdersPage() {
   const { data, isLoading } = useMyOrders();
   const orders = data?.order ?? [];
 
+  console.log({ orders });
+
   if (isLoading) return <OrderSkeleton />;
 
   const handleCancelOrder = async (orderId: string) => {

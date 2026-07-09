@@ -19,7 +19,5 @@ export const OrderService = {
   cancel: ({ id }: { id: string }) => {
     return api.patch(`/order/cancel/${id}`, {});
   },
-  guestPost: async (payload: CreateOrderPayload) => {
-    return api.post("/order", payload);
-  },
+ 
 };

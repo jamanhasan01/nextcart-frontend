@@ -5,7 +5,9 @@ import { ProductSection } from "../components/home/sections/ProductSection";
 import { useProduct, useProducts } from "@/hooks/products/useProducts";
 
 const HomePage = () => {
-  const { products: newArrivals } = useProducts({ isAdmin: true });
+  const { products: newArrivals } = useProducts({});
+
+  
   return (
     <div className="container">
       <BannerSection></BannerSection>

@@ -14,10 +14,12 @@ import { Label } from "@/components/ui/label";
 import useOrderCreate from "@/hooks/order/useOrderCreate";
 import { useCart } from "@/hooks/cart/userCart";
 import { ICartItem } from "@/types/cart";
+import { useRouter } from "next/navigation";
+
 
 const CheckoutForm = () => {
   const { mutateAsync: createOrder, isPending } = useOrderCreate();
-
+  const router=useRouter()
   const { data } = useCart();
   const items = data?.items || [];
   const form = useForm<CheckoutFormValues>({
@@ -46,6 +48,8 @@ const CheckoutForm = () => {
       await createOrder(payload);
 
       toast.success("Order placed successfully!");
+      form.reset()
+      router.push('/orders')
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);

@@ -42,6 +42,7 @@ export default function Navbar() {
 
         <nav className="hidden md:flex items-center gap-8 text-sm">
           <Link href="/">Home</Link>
+          <Link href="/products">All Product</Link> 
           <Link href="/orders">My Orders</Link>
         </nav>
 

@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
 import { ICartItem } from "@/types/cart";
+import { formatBDT } from "@/lib/formatBDT";
 
 interface OrderSummaryProps {
   items: ICartItem[];
@@ -59,12 +60,12 @@ const OrderSummary = ({ items }: OrderSummaryProps) => {
                 </p>
 
                 <p className="text-sm font-semibold">
-                  ${item.product.finalPrice.toFixed(2)}
+                  {formatBDT(item.product.finalPrice)}
                 </p>
               </div>
 
               <div className="font-semibold">
-                ${(item.product.finalPrice * item.quantity).toFixed(2)}
+                {formatBDT(item.product.finalPrice * item.quantity)}
               </div>
             </div>
           ))}
@@ -78,7 +79,7 @@ const OrderSummary = ({ items }: OrderSummaryProps) => {
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Subtotal</span>
 
-            <span>${subtotal.toFixed(2)}</span>
+            <span>{formatBDT(subtotal)}</span>
           </div>
 
           <div className="flex justify-between text-sm">
@@ -90,7 +91,7 @@ const OrderSummary = ({ items }: OrderSummaryProps) => {
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Discount</span>
 
-            <span>-${discount.toFixed(2)}</span>
+            <span>- {formatBDT(discount)}</span>
           </div>
         </div>
 
@@ -101,7 +102,7 @@ const OrderSummary = ({ items }: OrderSummaryProps) => {
         <div className="flex justify-between text-lg font-bold">
           <span>Total</span>
 
-          <span>${total.toFixed(2)}</span>
+          <span>{formatBDT(total)}</span>
         </div>
       </CardContent>
     </Card>

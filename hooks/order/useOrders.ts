@@ -5,6 +5,7 @@ export const useOrders = () => {
   const { data } = useQuery({
     queryKey: ["orders"],
     queryFn: () => OrderService.get(),
+    
   });
   return {
     orders: data?.data?.order,
@@ -12,13 +13,14 @@ export const useOrders = () => {
 };
 
 export const useMyOrders = () => {
-  const { data ,isLoading} = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["my-orders"],
     queryFn: () => OrderService.getMy(),
+    
   });
   return {
     data: data?.data,
-    isLoading
+    isLoading,
   };
 };
 export default useMyOrders;

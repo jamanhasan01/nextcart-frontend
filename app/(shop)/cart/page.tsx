@@ -8,6 +8,7 @@ import { useCart } from "@/hooks/cart/userCart";
 import { useRemoveCart } from "@/hooks/cart/useRemoveCart";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
 import { ICart, ICartItem } from "@/types/cart";
+import { formatBDT } from "@/lib/formatBDT";
 
 export default function CartPage() {
   const { data, isLoading } = useCart();
@@ -16,7 +17,7 @@ export default function CartPage() {
 
   const { mutate: removeFromCart, isPending: isRemoving } = useRemoveCart();
 
-  const cart: ICartItem[] = data?.items ?? []
+  const cart: ICartItem[] = data?.items ?? [];
 
   const total = cart.reduce(
     (sum, item) => sum + item.product.finalPrice * item.quantity,
@@ -87,12 +88,12 @@ export default function CartPage() {
                     <h3 className="font-semibold">{item.product.name}</h3>
 
                     <p className="mt-1 text-sm text-muted-foreground">
-                      ${item.product.finalPrice}
+                      {formatBDT(item.product.finalPrice)}
                     </p>
                   </div>
 
                   <p className="font-bold">
-                    ${(item.product.finalPrice * item.quantity).toFixed(2)}
+                    {formatBDT(item.product.finalPrice * item.quantity)}
                   </p>
                 </div>
 
@@ -152,7 +153,7 @@ export default function CartPage() {
             <div className="flex justify-between">
               <span>Subtotal</span>
 
-              <span className="font-semibold">${total.toFixed(2)}</span>
+              <span className="font-semibold">{formatBDT(total)}</span>
             </div>
 
             <div className="flex justify-between">
@@ -164,7 +165,7 @@ export default function CartPage() {
             <div className="flex justify-between border-t pt-3 font-bold">
               <span>Total</span>
 
-              <span>${total.toFixed(2)}</span>
+              <span>{formatBDT(total)}</span>
             </div>
           </div>
 

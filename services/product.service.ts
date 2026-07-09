@@ -8,6 +8,9 @@ export const ProductService = {
   getById: async (id: string) => {
     return api.get(`/products/${id}`);
   },
+  getStats: async () => {
+    return api.get(`/products/stats`);
+  },
 
   create: async (payload: FormData) => {
     return api.post("/products", payload);

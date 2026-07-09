@@ -14,6 +14,17 @@ export const useProducts = (params: IProductQuery) => {
     isLoading,
   };
 };
+export const useProductsStats = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["products_state"],
+    queryFn: () => ProductService.getStats(),
+  });
+
+  return {
+    stats: data?.data,
+    isLoading,
+  };
+};
 
 export const useProduct = (id: string) => {
   const { data, isLoading } = useQuery({

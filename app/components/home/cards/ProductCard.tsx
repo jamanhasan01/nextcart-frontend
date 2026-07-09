@@ -8,10 +8,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { IProduct } from "@/types/products.type";
 import { useAddToCart } from "@/hooks/cart/useAddToCart";
 import useDebounce from "@/hooks/useDebounce";
+import { formatBDT } from "@/lib/formatBDT";
 
-interface ProductImage {
-  url: string;
-}
+
 
 interface ProductCardProps {
   product: IProduct;
@@ -60,11 +59,13 @@ export function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold">${product.finalPrice}</span>
+          <span className="text-lg font-bold">
+                {formatBDT(product.finalPrice)}
+          </span>
 
           {product.discount > 0 && (
             <span className="text-sm text-muted-foreground line-through">
-              ${product.price}
+              {formatBDT(product.price)}
             </span>
           )}
         </div>

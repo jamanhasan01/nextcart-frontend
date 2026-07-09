@@ -6,6 +6,7 @@ export const CategoryService = {
   get: async (params: IProductQuery) => {
     return api.get(`/categories`, params);
   },
+
   getById: async (id: string) => {
     return api.get(`/categories/${id}`);
   },

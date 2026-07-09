@@ -9,6 +9,7 @@ export interface ICategory extends Document {
   parent?: string;
   order?: number;
   image: IImage | null;
+  productCount:number
   status: "active" | "draft" ;
   createdAt?: Date;
   updatedAt?: Date;
