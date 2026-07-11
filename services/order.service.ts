@@ -1,8 +1,9 @@
+import { CreateOrderPayload, IOrderQuery } from "@/types/order.type";
 import { api } from "@/utils/Api";
 
 export const OrderService = {
-  get: async () => {
-    return api.get(`/admin/orders`);
+  get: async (params = {}) => {
+    return api.get(`/admin/orders`, params);
   },
   getMy: async () => {
     return api.get(`/orders`);
@@ -16,8 +17,18 @@ export const OrderService = {
   update: ({ id, data }: { id: string; data: FormData }) => {
     return api.patch(`/order/${id}`, data);
   },
+  updateStatus: ({
+    orderId,
+    data,
+  }: {
+    orderId: string;
+    data: {
+      orderStatus: string;
+    };
+  }) => {
+    return api.patch(`/order/order-status/${orderId}`, data);
+  },
   cancel: ({ id }: { id: string }) => {
     return api.patch(`/order/cancel/${id}`, {});
   },
- 
 };

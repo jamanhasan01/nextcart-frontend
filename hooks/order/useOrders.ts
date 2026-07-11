@@ -1,14 +1,16 @@
 import { OrderService } from "@/services/order.service";
-import { Query, useQuery } from "@tanstack/react-query";
+import { IOrderQuery } from "@/types/order.type";
+import { keepPreviousData, Query, useQuery } from "@tanstack/react-query";
 
-export const useOrders = () => {
+export const useOrders = (params: IOrderQuery) => {
   const { data } = useQuery({
-    queryKey: ["orders"],
-    queryFn: () => OrderService.get(),
-    
+    queryKey: ["orders", params],
+    queryFn: () => OrderService.get(params),
+  
   });
   return {
-    orders: data?.data?.order,
+    orders: data?.data?.orders || [],
+    pagination: data?.data.pagination,
   };
 };
 
@@ -16,7 +18,6 @@ export const useMyOrders = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["my-orders"],
     queryFn: () => OrderService.getMy(),
-    
   });
   return {
     data: data?.data,

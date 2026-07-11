@@ -57,7 +57,7 @@ const data = {
     },
     {
       title: "Orders",
-      url: "/orders",
+      url: "/dashboard/orders",
       icon: <ShoppingCartIcon />,
     },
     {

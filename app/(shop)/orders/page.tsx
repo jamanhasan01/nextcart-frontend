@@ -11,6 +11,7 @@ import { OrderFooter } from "@/app/components/order/OrderFooter";
 import { OrderService } from "@/services/order.service";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { IOrderItem } from "@/types/order.type";
 
 export default function OrdersPage() {
   const queryClient = useQueryClient();
@@ -88,9 +89,11 @@ export default function OrdersPage() {
               />
 
               <div className="divide-y divide-slate-100">
-                {order.items.map((item: any) => (
-                  <OrderItem key={item.product._id} item={item} />
-                ))}
+                {order.items.map((item: IOrderItem, index: number) => {
+                  if (!item.product) return null;
+
+                  return <OrderItem key={item.productId} item={item} />;
+                })}
               </div>
 
               <OrderFooter
