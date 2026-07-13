@@ -28,7 +28,7 @@ export const useRemoveCart = () => {
     },
 
     onError: (error) => {
-      console.log(error);
+   
 
       toast.error("Failed to remove product");
     },

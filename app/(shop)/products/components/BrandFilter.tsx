@@ -17,9 +17,8 @@ const brands = [
 const BrandFilter = () => {
   const handleCheckedChange = (
     brand: string,
-    checked: boolean | "indeterminate"
+    checked: boolean | "indeterminate",
   ) => {
-    console.log(brand, checked);
 
     // TODO:
     // Update URL search params
@@ -33,10 +32,7 @@ const BrandFilter = () => {
 
       <div className="space-y-3">
         {brands.map((brand) => (
-          <div
-            key={brand}
-            className="flex items-center justify-between"
-          >
+          <div key={brand} className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Checkbox
                 id={brand}
@@ -45,10 +41,7 @@ const BrandFilter = () => {
                 }
               />
 
-              <Label
-                htmlFor={brand}
-                className="cursor-pointer text-sm"
-              >
+              <Label htmlFor={brand} className="cursor-pointer text-sm">
                 {brand}
               </Label>
             </div>

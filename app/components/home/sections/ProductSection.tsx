@@ -2,8 +2,9 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "../cards/ProductCard";
+
 import { IProduct } from "@/types/products.type";
+import ProductCard from "../cards/ProductCard";
 
 interface ProductSectionProps {
   title: string;

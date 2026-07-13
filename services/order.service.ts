@@ -8,6 +8,9 @@ export const OrderService = {
   getMy: async () => {
     return api.get(`/orders`);
   },
+  getStats: async () => {
+    return api.get(`/orders/stats`);
+  },
   getById: async (id: string) => {
     return api.get(`/order/${id}`);
   },

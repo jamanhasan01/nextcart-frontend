@@ -20,6 +20,9 @@ export const useUpdateOrderStatus = () => {
       queryClient.invalidateQueries({
         queryKey: ["orders"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["orders-stats"],
+      });
     },
 
     onError: (error: any) => {

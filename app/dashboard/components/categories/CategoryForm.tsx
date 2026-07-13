@@ -101,7 +101,7 @@ const CategoryForm = ({ category }: CategoryFormProps) => {
 
       let res;
 
-      console.log(formData);
+
 
       if (isEditMode && category?._id) {
         res = await updateCategory({

@@ -18,7 +18,7 @@ export default function OrdersPage() {
   const { data, isLoading } = useMyOrders();
   const orders = data?.order ?? [];
 
-  console.log({ orders });
+
 
   if (isLoading) return <OrderSkeleton />;
 
@@ -33,7 +33,7 @@ export default function OrdersPage() {
         });
       }
     } catch (error) {
-      console.error(error);
+
       toast.error("Failed to cancel order.");
     }
   };

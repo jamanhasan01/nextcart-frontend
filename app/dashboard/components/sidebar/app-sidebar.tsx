@@ -62,23 +62,13 @@ const data = {
     },
     {
       title: "Users",
-      url: "/users",
+      url: "/dashboard/users",
       icon: <UsersIcon />,
     },
     {
       title: "Inventory",
       url: "/inventory",
       icon: <PackageIcon />,
-    },
-    {
-      title: "Coupons",
-      url: "/coupons",
-      icon: <TicketPercentIcon />,
-    },
-    {
-      title: "Settings",
-      url: "/settings",
-      icon: <SettingsIcon />,
     },
   ],
 };

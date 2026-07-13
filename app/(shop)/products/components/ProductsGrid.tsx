@@ -1,6 +1,6 @@
 "use client";
 
-import ProductCard from "./ProductCard";
+import ProductCard from "../../../components/home/cards/ProductCard";
 import ProductsEmpty from "./ProductsEmpty";
 import ProductsSkeleton from "./ProductsSkeleton";
 

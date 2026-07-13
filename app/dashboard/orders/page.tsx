@@ -7,24 +7,33 @@ import OrdersFilter from "../components/orders/OrderFilter";
 import { PaginationComponent } from "@/app/components/common/PaginationComponent";
 import OrderDetailsModal from "../components/orders/OrderDetailsModal";
 import { IOrder, IOrderQuery } from "@/types/order.type";
+import { TableSkeleton } from "../components/skeletons/TableSkeleton";
+import useStats from "@/hooks/order/useStats";
+import { OrderStatsDashboard } from "../components/orders/OrderStatsDashboard";
 
 const OrdersPage = () => {
   const [page, setPage] = useState(1);
   const [searchQuery, onSearchChange] = useState("");
   const [statusFilter, onStatusChange] = useState<IOrderQuery["status"]>("all");
   const [selectedOrder, setSelectedOrder] = useState<IOrder | null>(null);
-
   const { debouncevalue, isDebounce } = useDebounce(searchQuery, 1000);
-  const { orders, pagination } = useOrders({
+
+  const { stats } = useStats();
+
+
+  const { orders, pagination, isLoading } = useOrders({
     search: debouncevalue,
     page: page,
     status: statusFilter,
   });
+
   const totalPage = pagination?.total_page;
   const limit = pagination?.limit;
 
   return (
     <div>
+      {/* stats of data */}
+      <OrderStatsDashboard stats={stats}></OrderStatsDashboard>
       {/* filter of data */}
       <OrdersFilter
         onSearchChange={onSearchChange}
@@ -32,12 +41,17 @@ const OrdersPage = () => {
         onStatusChange={onStatusChange}
         statusFilter={statusFilter}
       ></OrdersFilter>
-      <OrderTable
-        orders={orders}
-        page={page}
-        limit={limit}
-        onView={setSelectedOrder}
-      ></OrderTable>
+      {isLoading ||
+        (isDebounce ? (
+          <TableSkeleton></TableSkeleton>
+        ) : (
+          <OrderTable
+            orders={orders}
+            page={page}
+            limit={limit}
+            onView={setSelectedOrder}
+          ></OrderTable>
+        ))}
       {totalPage > 1 && (
         <PaginationComponent
           total_page={totalPage}

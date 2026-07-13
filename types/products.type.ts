@@ -19,6 +19,8 @@ export interface IProduct {
     name: string;
   };
 
+  slug: string;
+
   brand: string | null;
 
   price: number;

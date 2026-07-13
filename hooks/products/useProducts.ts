@@ -28,7 +28,7 @@ export const useProductsStats = () => {
 
 export const useProduct = (id: string) => {
   const { data, isLoading } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["product",id],
     queryFn: () => ProductService.getById(id),
   });
   return {

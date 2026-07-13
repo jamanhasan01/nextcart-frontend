@@ -3,14 +3,14 @@ import { IOrderQuery } from "@/types/order.type";
 import { keepPreviousData, Query, useQuery } from "@tanstack/react-query";
 
 export const useOrders = (params: IOrderQuery) => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["orders", params],
     queryFn: () => OrderService.get(params),
-  
   });
   return {
     orders: data?.data?.orders || [],
     pagination: data?.data.pagination,
+    isLoading,
   };
 };
 
