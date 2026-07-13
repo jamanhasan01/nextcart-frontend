@@ -1,30 +1,14 @@
 "use client";
 
+import { IProduct } from "@/types/products.type";
 import ProductCard from "../../../components/home/cards/ProductCard";
 import ProductsEmpty from "./ProductsEmpty";
 import ProductsSkeleton from "./ProductsSkeleton";
 
-interface Product {
-  _id: string;
-  name: string;
-  slug: string;
-  price: number;
-  finalPrice?: number;
-  discount?: number;
-  stock: number;
-  brand?: string;
-  rating?: number;
-  reviewCount?: number;
-  thumbnail: {
-    url: string;
-  };
-  category?: {
-    name: string;
-  };
-}
+
 
 interface ProductsGridProps {
-  products: Product[];
+  products: IProduct[];
   isLoading?: boolean;
   view: "grid" | "list";
 }
