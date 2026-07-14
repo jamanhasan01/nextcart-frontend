@@ -4,6 +4,4 @@
 
 import { ApiClient } from "./ApiClient";
 
-
-
-export const api = new ApiClient("http://localhost:8000/api/v1");
+export const api = new ApiClient(process.env.NEXT_PUBLIC_API_URL!);
