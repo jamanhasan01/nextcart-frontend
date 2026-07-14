@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { PackageSearch, RotateCcw } from "lucide-react";
+import { Package, PackageSearch, RotateCcw, ShoppingBag } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -23,15 +23,20 @@ const ProductsEmpty = () => {
         <Button
           render={
             <Link href="/products">
-              <RotateCcw className="mr-2 h-4 w-4" />
-              Clear Filters
+              <Package className="mr-2 h-4 w-4" />
+              Show All Products
             </Link>
           }
         ></Button>
 
         <Button
           variant="outline"
-          render={<Link href="/">Continue Shopping</Link>}
+          render={
+            <Link href="/">
+              <ShoppingBag className="mr-2 h-4 w-4" />
+              Continue Shopping
+            </Link>
+          }
         ></Button>
       </div>
     </div>
