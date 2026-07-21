@@ -1,12 +1,25 @@
-export default function Page() {
+"use client";
+import DashboardComponent from "./components/dashboard/DashboardComponent";
+import SalesStats from "./components/sales/SalesStats";
+import { useSalesStats } from "@/hooks/sales/useSales";
+import { useProductsStats } from "@/hooks/products/useProducts";
+import useOrderStats from "@/hooks/order/useOrderStats";
+
+const page = () => {
+  const { stats: storeSales } = useSalesStats();
+  const { stats: productStats } = useProductsStats();
+  const { stats: onlineSales } = useOrderStats();
+  console.log({ productStats });
+
   return (
-    <div className="flex flex-1 flex-col gap-4 ">
-      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
-      </div>
-      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+    <div>
+      <DashboardComponent
+        storeSales={storeSales}
+        onlineSales={onlineSales}
+        productStats={productStats}
+      ></DashboardComponent>
     </div>
   );
-}
+};
+
+export default page;

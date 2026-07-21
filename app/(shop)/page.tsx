@@ -16,16 +16,16 @@ const HomePage = () => {
   const { products: trending, isLoading: isLoadingTrending } = useProducts({ isTrending: "true" });
   const { products: flashDeals, isLoading: isLoadingFlash } = useProducts({ isFlashDeal: "true" });
   
-  const targetCategoryId = "6a55e981338ea912bf7e4369";
+  const targetCategoryId = "6a4f865c728cf513633a6cc3";
   const { products: shirts, isLoading: isLoadingShirts } = useProducts({
     categories: targetCategoryId,
   });
 
   // 2. Fetch the category details for the split banner layout
-  const { category, isLoading: isLoadingCategory } = useCategory(targetCategoryId);
-
+  const { category, isLoading: isLoadingCategory } = useCategory('6a4f865c728cf513633a6cc3');
+  
   const isGlobalLoading = isLoadingNew || isLoadingTrending || isLoadingFlash || isLoadingShirts || isLoadingCategory;
-
+  
   if (isGlobalLoading) {
     return (
       <div className="flex min-h-[60vh] w-full flex-col items-center justify-center gap-2">
@@ -34,6 +34,7 @@ const HomePage = () => {
       </div>
     );
   }
+  console.log(category);
 
   return (
     <div >

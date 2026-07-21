@@ -8,7 +8,7 @@ import { PaginationComponent } from "@/app/components/common/PaginationComponent
 import OrderDetailsModal from "../components/orders/OrderDetailsModal";
 import { IOrder, IOrderQuery } from "@/types/order.type";
 import { TableSkeleton } from "../components/skeletons/TableSkeleton";
-import useStats from "@/hooks/order/useStats";
+import useStats from "@/hooks/order/useOrderStats";
 import { OrderStatsDashboard } from "../components/orders/OrderStatsDashboard";
 
 const OrdersPage = () => {

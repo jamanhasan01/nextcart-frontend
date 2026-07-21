@@ -24,6 +24,7 @@ const CategoriesManage = () => {
     status: statusFilter,
     limit: 20,
     page,
+    isAdmin:true
   });
 
 

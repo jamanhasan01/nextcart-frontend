@@ -1,7 +1,7 @@
 import { OrderService } from "@/services/order.service";
 import { useQuery } from "@tanstack/react-query";
 
-export const useStats = () => {
+export const useOrderStats = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["orders-stats"],
     queryFn: () => OrderService.getStats(),
@@ -11,4 +11,4 @@ export const useStats = () => {
     isLoading,
   };
 };
-export default useStats;
+export default useOrderStats;

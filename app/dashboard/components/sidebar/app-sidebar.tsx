@@ -10,20 +10,18 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
-  SettingsIcon,
-  TicketPercentIcon,
   UsersIcon,
   ShoppingCartIcon,
   ShoppingBagIcon,
   LayoutDashboardIcon,
   PackageIcon,
+  TicketPercentIcon,
 } from "lucide-react";
 
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import { useAuth } from "@/hooks/auth/useAuth";
 
-// This is sample data.
 const data = {
   navMain: [
     {
@@ -44,7 +42,6 @@ const data = {
           title: "Add Products",
           url: "/dashboard/products/create",
         },
-
         {
           title: "Manage Categories",
           url: "/dashboard/categories",
@@ -60,15 +57,27 @@ const data = {
       url: "/dashboard/orders",
       icon: <ShoppingCartIcon />,
     },
+    /* ------------------- UPDATED SALES NAV ITEM ------------------- */
+    {
+      title: "Sales Management",
+      url: "/dashboard/sales",
+      icon: <TicketPercentIcon />,
+      items: [
+        {
+          title: "Manage Sales",
+          url: "/dashboard/sales", // Historical list/dashboard
+        },
+        {
+          title: "Add Sale",
+          url: "/dashboard/sales/create", // For manual invoice creation
+        },
+      ],
+    },
+    /* ------------------------------------------------------------- */
     {
       title: "Users",
       url: "/dashboard/users",
       icon: <UsersIcon />,
-    },
-    {
-      title: "Inventory",
-      url: "/inventory",
-      icon: <PackageIcon />,
     },
   ],
 };
@@ -84,10 +93,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     window.location.href = "/login";
     return null;
   }
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <h1>logo</h1>
+        <div className="flex h-12 items-center px-4">
+          <h1 className="font-bold tracking-tight">logo</h1>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
